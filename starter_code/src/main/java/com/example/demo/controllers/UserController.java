@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,26 +34,31 @@ public class UserController {
 	@Autowired
 	private CartRepository cartRepository;
 
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 	@GetMapping("/id/{id}")
 	public ResponseEntity<User> findById(@PathVariable Long id) {
-		LOGGER.info("Find user by id {}", id);
+		LOGGER.debug("Find user by id {}", id);
 		Optional<User> user = userRepository.findById(id);
-		if (!user.isPresent()) {
-			LOGGER.error("Error user not found.");
+		if (user.isEmpty()) {
+			LOGGER.error("User not found.");
 			return ResponseEntity.notFound().build();
 		}
+		LOGGER.debug("Find user by id {} success", id);
 		return ResponseEntity.ok(user.get());
 
 	}
 	
 	@GetMapping("/{username}")
 	public ResponseEntity<User> findByUserName(@PathVariable String username) {
-		LOGGER.info("Find user by username {}", username);
+		LOGGER.debug("Find user by username {}", username);
 		User user = userRepository.findByUsername(username);
 		if (Objects.isNull(user)) {
-			LOGGER.error("Error user not found.");
+			LOGGER.error("User not found.");
 			return ResponseEntity.notFound().build();
 		}
+		LOGGER.debug("Find user by username {} success", username);
 		return ResponseEntity.ok(user);
 
 	}
@@ -63,17 +69,16 @@ public class UserController {
 		User user = new User();
 		try {
 			user.setUsername(createUserRequest.getUsername());
-			Cart cart = new Cart();
-			cart.setItems(Collections.emptyList());
-			cart = cartRepository.save(cart);
-			user.setCart(cart);
 			if (!createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())) {
 				LOGGER.error("Error with user password. Cannot create user {}", createUserRequest.getUsername());
 				return ResponseEntity.badRequest().build();
 			}
-			user.setPassword(createUserRequest.getPassword());
+			Cart cart = new Cart();
+			cart = cartRepository.save(cart);
+			user.setCart(cart);
+			user.setPassword(bCryptPasswordEncoder.encode(createUserRequest.getPassword()));
 			user = userRepository.save(user);
-			LOGGER.info("user: {} - password: {} - cast: {}", user.getUsername(), user.getPassword(), user.getCart().toString());
+			LOGGER.debug("Creating user {} success", createUserRequest.getUsername());
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
 		}

@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static com.example.demo.security.SecurityConstants.*;
+
 @Component
 public class JWTAuthenticationVerificationFilter extends BasicAuthenticationFilter {
     public JWTAuthenticationVerificationFilter(AuthenticationManager authenticationManager) {
