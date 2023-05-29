@@ -69,7 +69,8 @@ public class UserController {
 		User user = new User();
 		try {
 			user.setUsername(createUserRequest.getUsername());
-			if (!createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())) {
+			if (createUserRequest.getPassword().length() < 7
+					|| !createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())) {
 				LOGGER.error("Error with user password. Cannot create user {}", createUserRequest.getUsername());
 				return ResponseEntity.badRequest().build();
 			}

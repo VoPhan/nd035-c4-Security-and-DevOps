@@ -27,6 +27,7 @@ public class ItemController {
 	
 	@GetMapping
 	public ResponseEntity<List<Item>> getItems() {
+		LOGGER.debug("Get all items");
 		return ResponseEntity.ok(itemRepository.findAll());
 	}
 	
