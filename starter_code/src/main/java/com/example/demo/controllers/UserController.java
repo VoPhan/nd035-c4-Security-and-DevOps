@@ -67,23 +67,17 @@ public class UserController {
 	public ResponseEntity<User> createUser(@RequestBody CreateUserRequest createUserRequest) {
 		LOGGER.debug("Creating user {}", createUserRequest.getUsername());
 		User user = new User();
-		try {
-			user.setUsername(createUserRequest.getUsername());
-			if (createUserRequest.getPassword().length() < 7
-					|| !createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())) {
-				LOGGER.error("Error with user password. Cannot create user {}", createUserRequest.getUsername());
-				return ResponseEntity.badRequest().build();
-			}
-			Cart cart = new Cart();
-			cart = cartRepository.save(cart);
-			user.setCart(cart);
-			user.setPassword(bCryptPasswordEncoder.encode(createUserRequest.getPassword()));
-			user = userRepository.save(user);
-			LOGGER.debug("Creating user {} success", createUserRequest.getUsername());
-		} catch (Exception e) {
-			LOGGER.error(e.getMessage());
+		user.setUsername(createUserRequest.getUsername());
+		if (createUserRequest.getPassword().length() < 7 || !createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())) {
+			LOGGER.error("Error with user password. Cannot create user {}", createUserRequest.getUsername());
+			return ResponseEntity.badRequest().build();
 		}
+		Cart cart = new Cart();
+		cart = cartRepository.save(cart);
+		user.setCart(cart);
+		user.setPassword(bCryptPasswordEncoder.encode(createUserRequest.getPassword()));
+		user = userRepository.save(user);
+		LOGGER.debug("Creating user {} success", createUserRequest.getUsername());
 		return ResponseEntity.ok(user);
 	}
-	
 }
