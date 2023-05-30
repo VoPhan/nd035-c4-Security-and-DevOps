@@ -1,0 +1,28 @@
+2023-05-30 09:39:57,751 INFO c.e.d.SareetaApplication [restartedMain] Starting SareetaApplication on DESKTOP-8GHKSKP with PID 6048 (started by ASUS in D:\Java Web Developer\nd035-c4-Security-and-DevOps)
+2023-05-30 09:39:57,760 DEBUG c.e.d.SareetaApplication [restartedMain] Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2023-05-30 09:39:57,761 INFO c.e.d.SareetaApplication [restartedMain] No active profile set, falling back to default profiles: default
+2023-05-30 09:40:00,407 INFO o.a.c.c.StandardService [restartedMain] Starting service [Tomcat]
+2023-05-30 09:40:00,409 INFO o.a.c.c.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.22]
+2023-05-30 09:40:00,589 INFO o.a.c.c.C.[.[.[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-05-30 09:40:00,858 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2023-05-30 09:40:01,021 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2023-05-30 09:40:01,130 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2023-05-30 09:40:01,246 INFO o.h.Version [restartedMain] HHH000412: Hibernate Core {5.3.10.Final}
+2023-05-30 09:40:01,251 INFO o.h.c.Environment [restartedMain] HHH000206: hibernate.properties not found
+2023-05-30 09:40:01,523 INFO o.h.a.c.Version [restartedMain] HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2023-05-30 09:40:01,771 INFO o.h.d.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-05-30 09:40:03,776 DEBUG c.e.d.s.JWTAuthenticationVerificationFilter [restartedMain] Filter 'JWTAuthenticationVerificationFilter' configured for use
+2023-05-30 09:40:04,766 INFO c.e.d.SareetaApplication [restartedMain] Started SareetaApplication in 7.71 seconds (JVM running for 9.982)
+2023-05-30 09:40:36,852 INFO o.a.c.c.C.[.[.[/] [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-30 09:40:36,974 INFO c.e.d.c.UserController [http-nio-8080-exec-2] Creating user vops
+2023-05-30 09:40:37,150 INFO c.e.d.c.UserController [http-nio-8080-exec-2] Creating user vops success
+2023-05-30 09:40:44,548 DEBUG c.e.d.s.JWTAuthenticationFilter [http-nio-8080-exec-3] Request is to process authentication
+2023-05-30 09:40:44,687 INFO o.h.h.i.QueryTranslatorFactoryInitiator [http-nio-8080-exec-3] HHH000397: Using ASTQueryTranslatorFactory
+2023-05-30 09:59:41,608 INFO c.e.d.c.CartController [http-nio-8080-exec-6] Add to cart for user vops
+2023-05-30 09:59:41,750 INFO c.e.d.c.CartController [http-nio-8080-exec-6] Add to cart for user vops success
+2023-05-30 10:05:54,656 INFO c.e.d.c.CartController [http-nio-8080-exec-9] Add to cart for user vops1
+2023-05-30 10:05:54,658 ERROR c.e.d.c.CartController [http-nio-8080-exec-9] User not found.
+2023-05-30 10:28:18,129 INFO c.z.h.HikariDataSource [Thread-5] HikariPool-1 - Shutdown initiated...
+2023-05-30 10:28:18,187 INFO c.z.h.HikariDataSource [Thread-5] HikariPool-1 - Shutdown completed.
